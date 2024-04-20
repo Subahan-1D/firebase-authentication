@@ -10,6 +10,9 @@ import Home from './Home/Home.jsx';
 import Register from './components/Register/Register.jsx';
 import Login from './components/Login/Login.jsx';
 import AuthProvider from './components/AuthProvider/AuthProvider.jsx';
+import About from './components/About/About.jsx';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute.jsx';
+import PersonalData from './components/PersonalData/PersonalData.jsx';
 
 const router = createBrowserRouter([
   {
@@ -29,6 +32,19 @@ const router = createBrowserRouter([
       {
         path: '/login',
         element: <Login></Login>
+      },
+      {
+        path: '/about',
+        element: <PrivateRoute>
+          <About></About>
+        </PrivateRoute>
+      },
+      {
+        path: '/pdata',
+        element:
+          <PrivateRoute>
+            <PersonalData></PersonalData>
+          </PrivateRoute>
       }
     ]
   },
@@ -37,7 +53,7 @@ const router = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <AuthProvider>
-    <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </AuthProvider>
   </React.StrictMode>,
 )
